@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HexaCore- Computadores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #333131;
+            color: white;
+        }
+
+        /* carrossel full width */
+        .carrossel {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        /* overlay escuro */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        /* conteúdo */
+        .conteudo {
+            position: absolute;
+            top: 50%;
+            left: 60px;
+            transform: translateY(-50%);
+            color: white;
+            max-width: 500px;
+        }
+
+        .conteudo h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .conteudo p {
+            margin: 8px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* botão */
+        .botao-comprar {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 8px 16px;
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        /* setas */
+        .botao {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .esquerda {
+            left: 15px;
+        }
+
+        .direita {
+            right: 15px;
+        }
+
+        /* bolinhas */
+        .indicadores {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .indicadores span {
+            width: 7px;
+            height: 7px;
+            background: white;
+            display: inline-block;
+            margin: 4px;
+            border-radius: 50%;
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        .ativo {
+            opacity: 1 !important;
+        }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #0a0a0a;
+            padding: 15px 30px;
+        }
+
+        .menu a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        .search input {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        nav {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+        }
+
+        /* BANNER */
+        .banner {
+
+            background-color: #007BFF;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* CARDS PRODUTOS */
+        .produtos {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px;
+        }
+
+        .cardpc {
+            width: 250px;
+            height: 150px;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCcCF8A-7fQcIoja1fpsBdIcbtRRtno6gaQ&s);
+            /* sua imagem */
+            background-size: cover;
+            /* faz preencher tudo */
+            background-position: center;
+            /* centraliza */
+
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            /* joga o texto pra baixo */
+
+            transition: 0.3s;
+        }
+
+        .cardnot {
+            width: 250px;
+            height: 150px;
+            background-image: url(https://s2-techtudo.glbimg.com/CuWOBee5VDISWBbxRAdqnIIfKBg=/0x0:1500x844/984x0/smart/filters:strip_icc/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2024/N/D/R1GfAESMWHcKZEQb4H3Q/acer-nitro-v15-06.jpg);
+            /* sua imagem */
+            background-size: cover;
+            /* faz preencher tudo */
+            background-position: center;
+            /* centraliza */
+
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            /* joga o texto pra baixo */
+
+            transition: 0.3s;
+        }
+
+        .cardwork {
+            width: 250px;
+            height: 150px;
+            background-image: url(https://i.pcmag.com/imagery/reviews/06Hhy7Tq7TovbpNakYlLJVK-1.fit_lim.size_120x68.v1650989464.jpg);
+            /* sua imagem */
+            background-size: cover;
+            /* faz preencher tudo */
+            background-position: center;
+            /* centraliza */
+
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            /* joga o texto pra baixo */
+
+            transition: 0.3s;
+        }
+
+        .cardpc:hover {
+            transform: scale(1.05);
+            /* aumenta um pouco */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            /* sombra */
+        }
+
+        .cardnot:hover {
+            transform: scale(1.05);
+            /* aumenta um pouco */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            /* sombra */
+        }
+
+        .cardwork:hover {
+            transform: scale(1.05);
+            /* aumenta um pouco */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            /* sombra */
+        }
+
+        /* PRODUTOS DESTAQUE – ESTILO KABUM */
+        .produtos-destaque {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px;
+        }
+
+        .produto-loja {
+            display: flex;
+            flex-direction: column;
+            background: #1a1a1a;
+            border-radius: 12px;
+            width: 220px;
+            /* card menor */
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            flex: 0 1 220px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .produto-loja:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        /* IMAGEM OCUPANDO TODO O TOPO */
+        .produto-loja img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .info {
+            padding: 6px 10px;
+        }
+
+        .info h2 {
+            font-size: 14px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00ff88, #00cc66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 2px 4px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 3px;
+            line-height: 1.2em;
+            max-height: 3.6em;
+            overflow: hidden;
+        }
+
+        .estrelas {
+            font-size: 13px;
+            color: #FFD700;
+            margin-bottom: 3px;
+        }
+
+        .preco-antigo {
+            color: #ff4d4d;
+            text-decoration: line-through;
+            font-size: 12px;
+            margin: 2px 0;
+        }
+
+        .preco {
+            color: #00ff88;
+            font-size: 15px;
+            font-weight: bold;
+            margin: 2px 0;
+        }
+
+        .parcelado {
+            color: #aaa;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .btn-comprar {
+            background-color: #28a745;
+            color: white;
+            padding: 6px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 6px;
+            transition: background 0.3s;
+            font-size: 13px;
+        }
+
+        .btn-comprar:hover {
+            background-color: #218838;
+        }
+
+        footer {
+            background: #111;
+            text-align: center;
+            padding: 10px;
+        }
+
+        a {
+            color: rgb(255, 255, 255);
+            /* ou qualquer cor */
+            text-decoration: none;
+            /* tira o sublinhado (opcional) */
+        }
+
+        .user {
+            margin-right: 15px;
+            font-size: 18px;
+
+        }
+
+        .antigo {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .novo {
+            color: green;
+            font-weight: bold;
+        }
+
+        /* --- NOVO: ESTILO DO MODAL DE LOGIN --- */
+        .modal-login {
+            display: none;
+            /* Escondido por padrão */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-conteudo {
+            background-color: #1a1a1a;
+            margin: 10% auto;
+            padding: 30px;
+            border: 1px solid #00ff88;
+            width: 320px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .fechar {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #aaa;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-conteudo h2 {
+            color: #00ff88;
+            margin-bottom: 20px;
+        }
+
+        .modal-conteudo input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn-login {
+            background: #00ff88;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .links-modal {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .links-modal a {
+            color: #00ff88;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MODAL DE LOGIN -->
+    <div id="modalLogin" class="modal-login">
+        <div class="modal-conteudo">
+            <span class="fechar" onclick="fecharLogin()">&times;</span>
+            <h2>Área do Cliente</h2>
+            <input type="text" placeholder="E-mail ou Usuário">
+            <input type="password" placeholder="Senha">
+            <button class="btn-login">ENTRAR</button>
+            <div class="links-modal">
+                <p>Não tem conta? <a href="#">Cadastre-se</a></p>
+                <p><a href="#">Esqueci minha senha</a></p>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo"> <a href="#">
+                <img src="https://i.imgur.com/bri4wau.png" width="250">
+            </a>
+        </div>
+
+        <nav class="menu">
+            <a href="#">PC GAMER</a>
+            <a href="#">Notebooks</a>
+            <a href="#">Periféricos</a>
+            <a href="#">Ofertas</a>
+        </nav>
+
+        <div class="search">
+            <input type="text" placeholder="Buscar produtos...">
+        </div>
+
+        <div class="icons">
+            <!-- Alterado para chamar a função JavaScript -->
+            <span class="user">
+                <a href="javascript:void(0)" onclick="abrirLogin()">👤 Minha Conta</a>
+            </span>
+
+            <span class="user">
+                <a href="#">🛒 Carrinho</a>
+            </span>
+        </div>
+    </header>
+
+    <div class="carrossel">
+        <div class="slides" id="slides">
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1593640495253-23196b27a87f">
+                <div class="overlay"></div>
+                <div class="conteudo">
+                    <h2>PC Gamer de Alta Performance</h2>
+                    <p>Equipado com tecnologia de última geração para rodar qualquer jogo com máxima qualidade e
+                        fluidez.</p>
+                    <a href="#" class="botao-comprar">Ver mais</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
+                <div class="overlay"></div>
+                <div class="conteudo">
+                    <h2>Setup Gamer Completo</h2>
+                    <p>Iluminação RGB, ergonomia e desempenho para transformar sua experiência nos jogos.</p>
+                    <a href="#" class="botao-comprar">Explorar</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
+                <div class="overlay"></div>
+                <div class="conteudo">
+                    <h2>Notebooks Gamer Potentes</h2>
+                    <p>Alta performance com mobilidade, ideal para quem joga e trabalha em qualquer lugar.</p>
+                    <a href="#" class="botao-comprar">Conferir</a>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="botao esquerda" onclick="voltar()">❮</button>
+        <button class="botao direita" onclick="avancar()">❯</button>
+
+        <div class="indicadores" id="indicadores"></div>
+
+    </div>
+
+    <script>
+        // --- SCRIPT DO CARROSSEL ---
+        let index = 0;
+        const slides = document.getElementById("slides");
+        const total = slides.children.length;
+        const indicadores = document.getElementById("indicadores");
+
+        for (let i = 0; i < total; i++) {
+            let span = document.createElement("span");
+            span.onclick = () => irPara(i);
+            indicadores.appendChild(span);
+        }
+
+        function atualizar() {
+            if (!slides) return;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            [...indicadores.children].forEach((b, i) => {
+                b.classList.toggle("ativo", i === index);
+            });
+        }
+
+        function avancar() {
+            index = (index + 1) % total;
+            atualizar();
+        }
+
+        function voltar() {
+            index = (index - 1 + total) % total;
+            atualizar();
+        }
+
+        function irPara(i) {
+            index = i;
+            atualizar();
+        }
+
+        setInterval(avancar, 4000);
+        atualizar();
+
+        // --- NOVO: SCRIPT DO LOGIN ---
+        function abrirLogin() {
+            document.getElementById("modalLogin").style.display = "block";
+        }
+
+        function fecharLogin() {
+            document.getElementById("modalLogin").style.display = "none";
+        }
+
+        // Fechar se clicar fora da caixinha
+        window.onclick = function (event) {
+            let modal = document.getElementById("modalLogin");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Produtos</a>
+        <a href="#">Contato</a>
+    </nav>
+
+    <section class="banner">
+        <a href="#">
+            <h2>Promoção da Semana!</h2>
+            <p>Computadores com até 30% de desconto</p>
+        </a>
+    </section>
+
+    <section class="produtos">
+        <div class="cardpc">
+            <h3>PC Gamer</h3>
+            <p>Alto desempenho</p>
+            <p>DE <span class="antigo">R$ 50,000</span></p>
+            POR <span class="novo">R$ 35,000</span>
+        </div>
+        <div class="cardnot">
+            <h3>Notebook</h3>
+            <p>Leve e rápido</p>
+            <p>DE <span class="antigo">R$ 5,000</span></p>
+            POR <span class="novo">R$ 3,500</span>
+        </div>
+        <div class="cardwork">
+            <h3>Workstation</h3>
+            <p>Para profissionais</p>
+            <p>DE <span class="antigo">R$ 10,500</span></p>
+            POR <span class="novo">R$ 7,000</span>
+        </div>
+    </section>
+    <div class="oferta">
+
+        <h1 style="text-align:center;">💲Ofertas em Destaque💲</h1>
+    </div>
+
+
+
+    <div class="produtos-destaque">
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/8PmP75WS/ventoinha.jpg" alt="Ventoinha Corsair">
+            <div class="info">
+                <h2>Ventoinha Corsair AF140</h2>
+                <div class="estrelas">★★★★☆</div>
+                <p class="preco-antigo">de R$ 52,93</p>
+                <p class="preco">Por R$ 39,99 no PIX</p>
+                <p class="parcelado">em até 4x de R$ 11,76</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/zGf53k8b/1gamer-png.webp" alt="PC Gamer Custo-Benefício">
+            <div class="info">
+                <h2>PC Gamer Hexacore IV, Intel i5-12400F, GeForce RTX 4060 Ti 8GB, 16GB DDR4, SSD M.2 480GB</h2>
+                <div class="estrelas">★★★★★</div>
+                <p class="preco-antigo">de R$ 6.999</p>
+                <p class="preco">Por R$ 5.789</p>
+                <p class="parcelado">em até 12x de R$ 482,42</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">*Inclui: Ryzen 5 5600 + RTX 4060 / 16GB RAM / SSD
+                    1TB / Fonte 650W</p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/T3hMTYJt/gaj.jpg" alt="PC Gamer Intermediário">
+            <div class="info">
+                <h2>PC Gamer Hexhigh Ryzen 7 5700x| RTX 5060 8GB| 32gb Ram|SSD 1TB| Water Cooler 240mm| WINDOWS 11 Pro|
+                    Edição Full Black Premium</h2>
+                <div class="estrelas">★★★★★</div>
+                <p class="preco-antigo">de R$ 10.499</p>
+                <p class="preco">Por R$ 8.990</p>
+                <p class="parcelado">em até 12x de R$ 749,17</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">*Inclui: Ryzen 7 7800X3D + RTX 4070 / 32GB RAM /
+                    SSD 2TB</p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/T3S81MkY/2gamer-png.webp" alt="PC Gamer High-End">
+            <div class="info">
+                <h2>PC Gamer Hexquick-force, Ryzen 7 5600g, GeForce RTX 5070 Ti, 16GB DDR4, 500GB SSD NVMe, Gabinete
+                    Lateral de Vidro</h2>
+                <div class="estrelas">★★★★★</div>
+                <p class="preco-antigo">de R$ 15.999</p>
+                <p class="preco">Por R$ 13.450</p>
+                <p class="parcelado">em até 12x de R$ 1.120,83</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">*Inclui: Ryzen 9 + RTX 4080 / 32GB RAM / SSD 2TB
+                    + Cooler</p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.imgur.com/L3HPyHC.jpeg" alt="Logitech G203 Lightsync">
+            <div class="info">
+                <h2>Mouse Gamer Logitech G203 LIGHTSYNC RGB, Efeito de Ondas de Cores, 6 Botões Programáveis e Até 8.000
+                    DPI - Preto</h2>
+                <div class="estrelas">★★★★☆</div>
+                <p class="preco">A partir de R$ 129,90</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">Sensor preciso, ótimo custo‑benefício.</p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/LXtGxqmn/razer1-png.webp" alt="Razer Basilisk V3">
+            <div class="info">
+                <h2>Mouse Gamer Razer Basilisk V3, RGB Chroma, 26000 DPI, Optical Switch, 11 Botões, Preto</h2>
+                <div class="estrelas">★★★★★</div>
+                <p class="preco">A partir de R$ 279,90</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">Bom para jogos variados, botões programáveis.</p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/tRzLPVrv/log1-png.webp" alt="Logitech G305 Lightspeed">
+            <div class="info">
+                <h2>Mouse Gamer Sem Fio, Logitech G305 LIGHTSPEED com 6 Botões Programáveis e Até 12.000 DPI - Preto
+                </h2>
+                <div class="estrelas">★★★★☆</div>
+                <p class="preco">A partir de R$ 229,90</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">Wireless com ótimo sensor e bateria duradoura.
+                </p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/QNSyVZt5/monitor.jpg" alt="Monitor Gamer AOC LEGEND 27 240Hz">
+            <div class="info">
+                <h2>Monitor Gamer AOC LEGEND 27 240Hz 0,5ms, Preta/Vermelho, MEDIO, C27G2ZE</h2>
+                <div class="estrelas">★★★★☆</div>
+                <p class="preco">A partir de R$ 1.099,00</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">240 Hz com FreeSync para jogos rápidos.</p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.imgur.com/GXWRmhw.jpeg" alt="Monitor Gamer LG UltraGear 27">
+            <div class="info">
+                <h2>Monitor Gamer LG UltraGear 27” 27GS60F-B IPS Full HD 180Hz 1ms (GtG) NVIDIA® G-SYNC® AMD FreeSync™
+                </h2>
+                <div class="estrelas">★★★★★</div>
+                <p class="preco">A partir de R$ 1.024,00</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">Resolução maior e taxa de atualização rápida.</p>
+            </div>
+        </div>
+
+        <div class="produto-loja">
+            <img src="https://i.postimg.cc/L8J7rQmw/monitorcurvo-png.webp" alt="Monitor Gamer Curvo LG UltraGear 34">
+            <div class="info">
+                <h2>Monitor Gamer Curvo LG UltraGear 34", 2K WQHD, UltraWide, 160Hz, 1ms, FreeSync Premium, HDR10, Som
+                    Integrado - 34GP63A-B</h2>
+                <div class="estrelas">★★★★★</div>
+                <p class="preco">A partir de R$ 3.799,00</p>
+                <a href="#" class="btn-comprar">Comprar</a>
+                <p style="font-size:12px; color:#aaa; margin-top:3px;">Imersão máxima para jogos e produtividade.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 HexaCore - Todos os direitos reservados</p>
+    </footer>
+
+</body>
+
+</html>
