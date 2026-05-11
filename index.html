@@ -10,6 +10,7 @@
             margin: 0;
             background-color: #333131;
             color: white;
+            overflow-x: hidden; /* Evita scroll horizontal indesejado */
         }
 
         /* carrossel full width */
@@ -384,10 +385,9 @@
             font-weight: bold;
         }
 
-        /* --- NOVO: ESTILO DO MODAL DE LOGIN --- */
+        /* --- ESTILO DO MODAL DE LOGIN --- */
         .modal-login {
             display: none;
-            /* Escondido por padrão */
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -451,6 +451,8 @@
             color: #00ff88;
             text-decoration: underline;
         }
+
+        /* --- NOVO: ESTILO DO CARRINHO LATERAL --- */
         .carrinho-lateral {
             height: 100%;
             width: 0; /* Começa fechado */
@@ -495,6 +497,7 @@
             border-radius: 5px;
             font-weight: bold;
         }
+
     </style>
 </head>
 
@@ -514,7 +517,8 @@
             </div>
         </div>
     </div>
-<!-- NOVO: CARRINHO LATERAL (SIDEBAR) -->
+
+    <!-- NOVO: CARRINHO LATERAL (SIDEBAR) -->
     <div id="meuCarrinho" class="carrinho-lateral">
         <span class="fechar-carrinho" onclick="fecharCarrinho()">&times;</span>
         <div class="carrinho-conteudo">
@@ -532,7 +536,7 @@
             </a>
         </div>
 
-        <nav class="menu">
+    <nav class="menu">
             <a href="https://mautz01.github.io/asd/">PC GAMER</a>
             <a href="https://mautz01.github.io/HEXACORE-NOTEBOOKS/">Notebooks</a>
             <a href="https://mautz01.github.io/perifericos-hexacore/">Periféricos</a>
@@ -544,12 +548,11 @@
         </div>
 
         <div class="icons">
-            <!-- Alterado para chamar a função JavaScript -->
             <span class="user">
                 <a href="javascript:void(0)" onclick="abrirLogin()">👤 Minha Conta</a>
             </span>
 
-             <span class="user">
+            <span class="user">
                 <!-- Alterado para abrir o carrinho -->
                 <a href="javascript:void(0)" onclick="abrirCarrinho()">🛒 Carrinho</a>
             </span>
@@ -614,9 +617,11 @@
         function atualizar() {
             if (!slides) return;
             slides.style.transform = `translateX(-${index * 100}%)`;
-            [...indicadores.children].forEach((b, i) => {
-                b.classList.toggle("ativo", i === index);
-            });
+            if(indicadores.children.length > 0) {
+                [...indicadores.children].forEach((b, i) => {
+                    b.classList.toggle("ativo", i === index);
+                });
+            }
         }
 
         function avancar() {
@@ -637,7 +642,7 @@
         setInterval(avancar, 4000);
         atualizar();
 
-        // --- NOVO: SCRIPT DO LOGIN ---
+        // --- SCRIPT DO LOGIN ---
         function abrirLogin() {
             document.getElementById("modalLogin").style.display = "block";
         }
@@ -646,9 +651,19 @@
             document.getElementById("modalLogin").style.display = "none";
         }
 
-        // Fechar se clicar fora da caixinha
+        // --- NOVO: SCRIPT DO CARRINHO ---
+        function abrirCarrinho() {
+            document.getElementById("meuCarrinho").style.width = "350px";
+        }
+
+        function fecharCarrinho() {
+            document.getElementById("meuCarrinho").style.width = "0";
+        }
+
+        // Fechar modais se clicar fora
         window.onclick = function (event) {
             let modal = document.getElementById("modalLogin");
+            let carrinho = document.getElementById("meuCarrinho");
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -689,14 +704,10 @@
         </div>
     </section>
     <div class="oferta">
-
         <h1 style="text-align:center;">💲Ofertas em Destaque💲</h1>
     </div>
 
-
-
     <div class="produtos-destaque">
-
         <div class="produto-loja">
             <img src="https://i.postimg.cc/8PmP75WS/ventoinha.jpg" alt="Ventoinha Corsair">
             <div class="info">
@@ -831,5 +842,4 @@
     </footer>
 
 </body>
-
 </html>
