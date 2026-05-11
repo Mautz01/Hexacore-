@@ -451,6 +451,50 @@
             color: #00ff88;
             text-decoration: underline;
         }
+        .carrinho-lateral {
+            height: 100%;
+            width: 0; /* Começa fechado */
+            position: fixed;
+            z-index: 2000; /* Acima de tudo */
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s; /* Efeito de deslizar */
+            padding-top: 60px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            border-left: 2px solid #00ff88;
+        }
+
+        .carrinho-lateral .fechar-carrinho {
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 36px;
+            color: #00ff88;
+            cursor: pointer;
+        }
+
+        .carrinho-conteudo {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item-carrinho-vazio {
+            color: #888;
+            margin-top: 50px;
+        }
+
+        .btn-finalizar {
+            background-color: #00ff88;
+            color: black;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+            margin: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -468,6 +512,17 @@
                 <p>Não tem conta? <a href="#">Cadastre-se</a></p>
                 <p><a href="#">Esqueci minha senha</a></p>
             </div>
+        </div>
+    </div>
+<!-- NOVO: CARRINHO LATERAL (SIDEBAR) -->
+    <div id="meuCarrinho" class="carrinho-lateral">
+        <span class="fechar-carrinho" onclick="fecharCarrinho()">&times;</span>
+        <div class="carrinho-conteudo">
+            <h2 style="color: #00ff88;">Meu Carrinho</h2>
+            <hr border="1" color="#333">
+            <p class="item-carrinho-vazio">Seu carrinho está vazio :(</p>
+            <!-- Aqui entrariam os itens futuramente -->
+            <a href="#" class="btn-finalizar">FINALIZAR COMPRA</a>
         </div>
     </div>
 
