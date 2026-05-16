@@ -4,22 +4,34 @@
 <meta charset="UTF-8">
 <title>PC GAMERS BARATOS</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background-color: #333131;
-        color: white;
-    }
-        color: white;
-    padding: 10px;
-    border-radius: 10px;
+    :root {
+            --bg: #0f1115;
+            --card: #181c23;
+            --card2: #11151b;
+            --azul: #0066ff;
+            --azul-hover: #0052cc;
+            --texto: #ffffff;
+            --texto-sec: #9ca3af;
+            --borda: #252b36;
+        }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; /* joga o texto pra baixo */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    transition: 0.3s;
-    }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
     .cardnot {
           width: 250px;
     height: 150px;
@@ -68,135 +80,221 @@
 }
 
     /* PRODUTOS DESTAQUE – ESTILO KABUM */
-    .produtos-destaque {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-        margin: 20px;
-    }
+    .produtos-destaque{
+    display:flex;
 
-    .produto-loja {
-        display: flex;
-        flex-direction: column;
-        background: #1a1a1a;
-        border-radius: 12px;
-        width: 220px; /* card menor */
-        overflow: hidden;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-        flex: 0 1 220px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
+    gap:25px;
 
-    .produto-loja:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 10px 20px rgba(0,255,136,0.3);
-    }
+    flex-wrap:wrap;
 
-    /* IMAGEM OCUPANDO TODO O TOPO */
-    .produto-loja img {
-        width: 100%;
-        height: 220px;
-        object-fit: cover;
-        display: block;
-    }
+    justify-content:center;
+}
 
-    .info {
-        padding: 6px 10px;
-    }
+.produto-loja{
+    width:250px;
 
-    .info h2 {
-        font-size: 14px;
-        font-weight: bold;
-        background: linear-gradient(90deg, #00ff88, #00cc66);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        padding: 2px 4px;
-        border-radius: 4px;
-        display: inline-block;
-        margin-bottom: 3px;
-        line-height: 1.2em;
-        max-height: 3.6em;
-        overflow: hidden;
-    }
+    background: var(--card);
 
-    .estrelas {
-        font-size: 13px;
-        color: #FFD700;
-        margin-bottom: 3px;
-    }
+    border: 1px solid var(--borda);
 
-    .preco-antigo {
-        color: #ff4d4d;
-        text-decoration: line-through;
-        font-size: 12px;
-        margin: 2px 0;
-    }
+    border-radius: 22px;
 
-    .preco {
-        color: #00ff88;
-        font-size: 15px;
-        font-weight: bold;
-        margin: 2px 0;
-    }
+    overflow: hidden;
 
-    .parcelado {
-        color: #aaa;
-        font-size: 11px;
-        margin-bottom: 4px;
-    }
+    transition: 0.3s;
+}
 
-    .btn-comprar {
-        background-color: #28a745;
-        color: white;
-        padding: 6px 10px;
-        text-decoration: none;
-        border-radius: 5px;
-        display: inline-block;
-        margin-top: 6px;
-        transition: background 0.3s;
-        font-size: 13px;
-    }
+        .produto-loja:hover {
+            transform: translateY(-8px);
 
-    .btn-comprar:hover {
-        background-color: #218838;
-    }
+            border-color: var(--azul);
+
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .produto-loja img {
+            width: 100%;
+            height: 230px;
+
+            object-fit: contain;
+
+            background: var(--card2);
+
+            padding: 20px;
+        }
+
+        .info {
+            padding: 20px;
+        }
+
+        .info h2 {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .estrelas {
+            color: #facc15;
+            margin-bottom: 10px;
+        }
+
+        .preco-antigo {
+            color: var(--texto-sec);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+
+        .preco {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .parcelado {
+            color: var(--texto-sec);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .btn-comprar {
+            display: block;
+
+            width: 100%;
+
+            text-align: center;
+
+            background: var(--azul);
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .btn-comprar:hover {
+            background: var(--azul-hover);
+        }
 
     footer {
-        background: #111;
-        text-align: center;
-        padding: 10px;
-    }
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #0a0a0a;
-        padding: 15px 30px;
-    }
+            border-top: 1px solid var(--borda);
+
+            background: var(--card2);
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: var(--texto-sec);
+        }
+           .header {
+            width: 100%;
+            background: var(--card2);
+            border-bottom: 1px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px 60px;
+        }
+
+        .logo img {
+            width: 220px;
+        }
     
     footer {
         background: #111;
         text-align: center;
         padding: 10px;
     }
-    a {
-    color: rgb(255, 255, 255); /* ou qualquer cor */
-    text-decoration: none; /* tira o sublinhado (opcional) */}
+   a {
+            text-decoration: none;
+            color: white;
+        }
 
-    .menu a {
-        color: white;
-        margin: 10px;
-        text-decoration: none;
-    }
+    .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
 
-    .search input {
-        padding: 5px;
-        border-radius: 5px;
-        border: none;
-    }
+            background: var(--card2);
+
+            padding: 18px;
+
+            border-top: 1px solid var(--borda);
+        }
+
+        .menu a {
+            position: relative;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: var(--azul);
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 0%;
+            height: 2px;
+            background: var(--azul);
+            transition: 0.3s;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+
+   .search {
+            flex: 1;
+            display: flex;
+            max-width: 700px;
+            margin: 0 50px;
+        }
+
+        .search input {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--borda);
+            padding: 15px 20px;
+            color: white;
+            outline: none;
+            border-radius: 14px 0 0 14px;
+            font-size: 15px;
+        }
+
+        .search button {
+            width: 65px;
+            border: none;
+            background: var(--azul);
+            color: white;
+            font-size: 20px;
+            border-radius: 0 14px 14px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search button:hover {
+            background: var(--azul-hover);
+        }
 
     nav {
         background-color: #333;
@@ -209,8 +307,134 @@
         margin: 10px;
         text-decoration: none;
     }  
+ .icons {
+            display: flex;
+            gap: 25px;
+        }
 
-</style>
+        .icons a {
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .icons a:hover {
+            color: var(--azul);
+        }
+        /* --- ESTILO DO MODAL DE LOGIN --- */
+        .modal-login {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-conteudo {
+            background-color: #1a1a1a;
+            margin: 10% auto;
+            padding: 30px;
+            border: 1px solid #0047b3;
+            width: 320px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .fechar {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #aaa;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-conteudo h2 {
+            color: #0047b3;
+            margin-bottom: 20px;
+        }
+
+        .modal-conteudo input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn-login {
+            background: #0047b3;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .links-modal {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .links-modal a {
+            color: #0047b3;
+            text-decoration: underline;
+        }
+
+        /* --- NOVO: ESTILO DO CARRINHO LATERAL --- */
+        .carrinho-lateral {
+            height: 100%;
+            width: 0; /* Começa fechado */
+            position: fixed;
+            z-index: 2000; /* Acima de tudo */
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s; /* Efeito de deslizar */
+            padding-top: 60px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            border-left: 2px solid #0047b3;
+        }
+
+        .carrinho-lateral .fechar-carrinho {
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 36px;
+            color: #0047b3;
+            cursor: pointer;
+        }
+
+        .carrinho-conteudo {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item-carrinho-vazio {
+            color: #888;
+            margin-top: 50px;
+        }
+
+        .btn-finalizar {
+            background-color: #0047b3;
+            color: black;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+            margin: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+   </style>
 </head>
 <body>
     <header class="header">
