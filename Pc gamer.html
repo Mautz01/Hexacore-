@@ -436,39 +436,86 @@
 
    </style>
 </head>
+
 <body>
-    <header class="header">
-    <div class="logo">    <a href="index.html">
-            <img src="https://i.imgur.com/bri4wau.png" width="250">
-        </a>
+
+    <!-- MODAL DE LOGIN -->
+    <div id="modalLogin" class="modal-login">
+        <div class="modal-conteudo">
+            <span class="fechar" onclick="fecharLogin()">&times;</span>
+            <h2>Área do Cliente</h2>
+            <input type="text" placeholder="E-mail ou Usuário">
+            <input type="password" placeholder="Senha">
+            <button class="btn-login">ENTRAR</button>
+            <div class="links-modal">
+                <p>Não tem conta? <a href="#">Cadastre-se</a></p>
+                <p><a href="#">Esqueci minha senha</a></p>
+            </div>
+        </div>
     </div>
 
+    <!-- NOVO: CARRINHO LATERAL (SIDEBAR) -->
+    <div id="meuCarrinho" class="carrinho-lateral">
+        <span class="fechar-carrinho" onclick="fecharCarrinho()">&times;</span>
+        <div class="carrinho-conteudo">
+            <h2 style="color: #ffffff;">Meu Carrinho</h2>
+            <hr border="1" color="#333">
+            <p class="item-carrinho-vazio">Seu carrinho está vazio :(</p>
+            <!-- Aqui entrariam os itens futuramente -->
+            <a href="#" class="btn-finalizar">FINALIZAR COMPRA</a>
+        </div>
+    </div>
+
+  <header class="header">
+
+    <!-- TOPO -->
+    <div class="header-top">
+
+        <div class="logo">
+            <a href="index.html">
+                <img src="https://i.imgur.com/bri4wau.png">
+            </a>
+        </div>
+
+        <div class="search">
+            <input type="text" placeholder="O que você está procurando?">
+            <button>🔍</button>
+        </div>
+
+        <div class="icons">
+
+            <a href="javascript:void(0)" onclick="abrirLogin()">
+                👤 Minha Conta
+            </a>
+
+            <a href="javascript:void(0)" onclick="abrirCarrinho()">
+                🛒 Carrinho
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- MENU EMBAIXO -->
     <nav class="menu">
+
         <a href="Pc gamer.html">PC GAMER</a>
-        <a href="Notebook.html">Notebooks</a>
-        <a href="https://mautz01.github.io/perifericos-hexacore/">Periféricos</a>
-        <a href="https://mautz01.github.io/ofertas-hexacore/">Ofertas</a>
+
+        <a href="Notebooks.html">
+            NOTEBOOKS
+        </a>
+
+        <a href="https://mautz01.github.io/perifericos-hexacore/">
+            PERIFÉRICOS
+        </a>
+
+        <a href="https://mautz01.github.io/ofertas-hexacore/">
+            OFERTAS
+        </a>
+
     </nav>
 
-    <div class="search">
-        <input type="text" placeholder="Buscar produtos...">
-    </div>
-
-    <div class="icons">
-        <span class="user">
-            <a href="#">👤 Minha Conta</a>
-        </span>
-
-        <span class="user">
-            <a href="#">🛒 Carrinho</a>
-        </span>
-    </div>
 </header>
-
-<nav>
-    <a href="index.html">Início</a>
-    <a href="#">Produtos</a>
-    <a href="#">Contato</a>
 </nav>
  <div class="produtos-destaque">
 
