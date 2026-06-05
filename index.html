@@ -26,12 +26,14 @@
             scroll-behavior: smooth;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--texto);
-            overflow-x: hidden;
-        }
+       body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--texto);
+    overflow-x: hidden;
+
+    padding-top: 170px;
+}
 
         a {
             text-decoration: none;
@@ -40,27 +42,84 @@
 
         /* HEADER */
 
-        .header {
-            width: 100%;
-            background: var(--card2);
-            border-bottom: 1px solid var(--borda);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            backdrop-filter: blur(10px);
-        }
+               .header {
+    width: 100%;
+    background: var(--card2);
+    border-bottom: 1px solid var(--borda);
+
+    position: fixed;
+
+    top: 0;
+    z-index: 999;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s;
+}
 
         .header-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            padding: 18px 60px;
-        }
+             padding: 12px 40px;
+}
+/* HEADER MINIMIZADO */
 
-        .logo img {
-            width: 220px;
-        }
+header.scroll {
+
+    background: rgba(17,21,27,0.92);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* ESCONDE O MENU */
+
+.header.scroll .menu {
+
+    height: 0;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    padding: 0;
+
+    border: none;
+}
+
+/* HEADER MENOR */
+
+.header.scroll .header-top {
+
+    padding: 14px 50px;
+}
+
+/* LOGO */
+
+.header.scroll .logo img {
+
+    width: 190px;
+}
+
+/* PESQUISA */
+
+.header.scroll .search input {
+
+    padding: 12px 18px;
+}
+
+/* BOTÃO PESQUISA */
+
+.header.scroll .search button {
+
+    width: 58px;
+}
+.logo img {
+    width: 190px;
+}
 
         /* PESQUISA */
 
@@ -163,6 +222,7 @@
             width: 100%;
             height: 420px;
             overflow: hidden;
+            transform: translateY(-30px);
         }
 
         .slides {
@@ -694,7 +754,7 @@
                     <h2>PC Gamer de Alta Performance</h2>
                     <p>Equipado com tecnologia de última geração para rodar qualquer jogo com máxima qualidade e
                         fluidez.</p>
-                    <a href="#" class="botao-comprar">Ver mais</a>
+                    <a href="Pc gamer.html" class="botao-comprar">Ver mais</a>
                 </div>
             </div>
 
@@ -726,8 +786,29 @@
         <div class="indicadores" id="indicadores"></div>
 
     </div>
+    <script>
+
+const header = document.querySelector(".header");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 100){
+
+        header.classList.add("scroll");
+
+    } else {
+
+        header.classList.remove("scroll");
+
+    }
+
+});
+
+</script>
 
     <script>
+
+        
         // --- SCRIPT DO CARROSSEL ---
         let index = 0;
         const slides = document.getElementById("slides");
@@ -820,14 +901,14 @@
         </div>
 
         <div class="produto-loja">
-            <img src="https://i.postimg.cc/zGf53k8b/1gamer-png.webp" alt="PC Gamer Custo-Benefício">
+            <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/a/-/a-pc-cv500l-bk-c-fan-box-001_2_11.jpg" alt="PC Gamer Custo-Benefício">
             <div class="info">
                 <h2>PC Gamer Hexacore IV, Intel i5-12400F, GeForce RTX 4060 Ti 8GB, 16GB DDR4, SSD M.2 480GB</h2>
                 <div class="estrelas">★★★★★</div>
                 <p class="preco-antigo">de R$ 6.999</p>
                 <p class="preco">Por R$ 5.789</p>
                 <p class="parcelado">em até 12x de R$ 482,42</p>
-                <a href="#" class="btn-comprar">Comprar</a>
+                <a href="produto1.html" class="btn-comprar">Comprar</a>
                 <p style="font-size:12px; color:#aaa; margin-top:3px;">*Inclui: Ryzen 5 5600 + RTX 4060 / 16GB RAM / SSD
                     1TB / Fonte 650W</p>
             </div>
