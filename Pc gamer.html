@@ -25,12 +25,14 @@
             scroll-behavior: smooth;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--texto);
-            overflow-x: hidden;
-        }
+       body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--texto);
+    overflow-x: hidden;
+
+    padding-top: 130px;
+}
 
     .cardnot {
           width: 250px;
@@ -190,27 +192,91 @@
 
             color: var(--texto-sec);
         }
-           .header {
-            width: 100%;
-            background: var(--card2);
-            border-bottom: 1px solid var(--borda);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            backdrop-filter: blur(10px);
-        }
+        .header {
+    width: 100%;
+    background: var(--card2);
+    border-bottom: 1px solid var(--borda);
+
+    position: fixed;
+
+    top: 0;
+    z-index: 999;
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.3s;
+}
 
         .header-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            padding: 18px 60px;
-        }
+             padding: 12px 40px;
+}
+/* HEADER MINIMIZADO */
 
-        .logo img {
-            width: 220px;
-        }
+header.scroll {
+
+    background: rgba(17,21,27,0.92);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+/* ESCONDE O MENU */
+
+.header.scroll .menu {
+
+    height: 0;
+
+    opacity: 0;
+
+    overflow: hidden;
+
+    padding: 0;
+
+    border: none;
+}
+
+/* HEADER MENOR */
+
+.header.scroll .header-top {
+
+    padding: 14px 50px;
+}
+
+/* LOGO */
+
+.header.scroll .logo img {
+
+    width: 190px;
+}
+
+/* PESQUISA */
+
+.header.scroll .search input {
+
+    padding: 12px 18px;
+}
+
+/* BOTÃO PESQUISA */
+
+.header.scroll .search button {
+
+    width: 58px;
+}
+.logo img {
+    width: 190px;
+}
+
+/* ICONES */
+
+.header.scroll .icons a {
+
+    font-size: 14px;
+}
     
     footer {
         background: #111;
@@ -230,7 +296,7 @@
 
             background: var(--card2);
 
-            padding: 18px;
+            padding: 12px;
 
             border-top: 1px solid var(--borda);
         }
@@ -438,6 +504,7 @@
 </head>
 
 <body>
+    
 
     <!-- MODAL DE LOGIN -->
     <div id="modalLogin" class="modal-login">
@@ -520,7 +587,7 @@
  <div class="produtos-destaque">
 
     <div class="produto-loja">
-        <img src="https://i.postimg.cc/zGf53k8b/1gamer-png.webp">
+        <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/a/-/a-pc-cv500l-bk-c-fan-box-001_2_11.jpg">
         <div class="info">
             <h2>PC Gamer Hexacore IV, Intel i5-12400F, GeForce RTX 4060 Ti 8GB, 16GB DDR4, SSD M.2 480GB</h2>
             <div class="estrelas">★★★★★</div>
@@ -528,45 +595,45 @@
             <p class="preco">Por R$ 5.789</p>
             <p class="parcelado">em até 12x</p>
             <p class="parcelado">em até 12x de R$ 482,42</p>
-            <a href="#" class="btn-comprar">Comprar</a>
+            <a href="produto1.html" class="btn-comprar">Comprar</a>
              <p style="font-size:12px; color:#aaa; margin-top:3px;">*Inclui: Ryzen 5 5600 + RTX 4060 / 16GB RAM / SSD 1TB / Fonte 650W</p>
         </div>
     </div>
 
     <div class="produto-loja">
-        <img src="https://i.postimg.cc/T3hMTYJt/gaj.jpg">
+        <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/v/cv500l-water_fan-media-001_12_1.jpg">
         <div class="info">
             <h2>PC Gamer Hexhigh Ryzen 7 5700x| RTX 5060 8GB| 32gb Ram|SSD 1TB| Water Cooler 240mm| WINDOWS 11 Pro| Edição Full Black Premium</h2>
             <div class="estrelas">★★★★★</div>
             <p class="preco-antigo">de R$ 10.499</p>
             <p class="preco">Por R$ 8.990</p>
             <p class="parcelado">em até 12x de R$ 749,17</p>
-            <a href="#" class="btn-comprar">Comprar</a>
+            <a href="produto2.html" class="btn-comprar">Comprar</a>
             <p style="font-size:12px; color:#aaa; margin-top:3px;">*Inclui: Ryzen 7 7800X3D + RTX 4070 / 32GB RAM / SSD 2TB</p>
         </div>
     </div>
 
     <div class="produto-loja">
-        <img src="https://i.postimg.cc/T3S81MkY/2gamer-png.webp">
+        <img src="https://images0.kabum.com.br/produtos/fotos/sync_mirakl/939940/xlarge/PC-Gamer-Barato-Ryzen-5-5600gt-16gb-Ram-Ddr4-SSD-512gb-Nvme-Aquario-Preto-Win-11-Pro_1770930100.jpg">
         <div class="info">
             <h2>PC Gamer Hexquick-force, Ryzen 7 5600g, GeForce RTX 5070 Ti, 16GB DDR4, 500GB SSD NVMe, Gabinete Lateral de Vidro</h2>
             <div class="estrelas">★★★★★</div>
             <p class="preco-antigo">de R$ 15.999</p>
             <p class="preco">Por R$ 13.450</p>
             <p class="parcelado">em até 12x de R$ 1.120,83</p>
-            <a href="#" class="btn-comprar">Comprar</a>
+            <a href="produto3.html" class="btn-comprar">Comprar</a>
             <p style="font-size:12px; color:#aaa; margin-top:3px;">*Inclui: Ryzen 9 + RTX 4080 / 32GB RAM / SSD 2TB + Cooler</p>
         </div>
     </div>
 <div class="produto-loja">
-    <img src="https://cdn.dooca.store/559/products/imagem8_640x640+fill_ffffff.png?v=1714505100&webp=0">
+    <img src="https://shopinfo.vteximg.com.br/arquivos/ids/1712698-1000-1000/1.png?v=638871365339900000">
     <div class="info">
         <h2>PC Gamer Ryzen 5 5500, RTX 3060, 16GB RAM, SSD 512GB</h2>
         <div class="estrelas">★★★★☆</div>
         <p class="preco-antigo">de R$ 4.999</p>
         <p class="preco">Por R$ 3.799</p>
         <p class="parcelado">em até 12x de R$ 316,58</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto4.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 
@@ -578,67 +645,67 @@
         <p class="preco-antigo">de R$ 6.200</p>
         <p class="preco">Por R$ 5.299</p>
         <p class="parcelado">em até 12x de R$ 441,58</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto5.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 
 <div class="produto-loja">
-    <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSuyOIlfYGv5u3j82PlNoKdfUXvaZ49wcunjZ4JECUJxgNFvXjTraMJcqm_NV1q8zH0J91Qi9GCF0ZB72zyXEw2NuK1_wdi5YuwO83nNIVZP8SdOfIC9zj3I0iFIw7NlUljKYAMyJIoO6o&usqp=CAc">
+    <img src="https://shopinfo.vteximg.com.br/arquivos/ids/1672798-1000-1000/1.png?v=638998536762600000">
     <div class="info">
         <h2>PC Gamer Ryzen 7 5700X, RTX 4070, 32GB RAM, SSD 1TB</h2>
         <div class="estrelas">★★★★★</div>
         <p class="preco-antigo">de R$ 9.999</p>
         <p class="preco">Por R$ 8.499</p>
         <p class="parcelado">em até 12x de R$ 708,25</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto6.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 
 <div class="produto-loja">
-    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRY8fDOjBV3Vf_XzLhE685aba0MRHSrXv4U6OaSPRviH5f_6GdKaW1WJ6RH8OxN5DSnuQw388Mua6W7p99QbbXaDzht6Iyp2gEHSdcbWsj3Sr20RSPd2c6-1HazdftumlIUFPSyjxo&usqp=CAc">
+    <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/n/a/narok_amd_gpu-01_3_3.jpg">
     <div class="info">
         <h2>PC Gamer Ryzen 5 4600G (sem GPU), 16GB RAM, SSD 480GB</h2>
         <div class="estrelas">★★★☆☆</div>
         <p class="preco-antigo">de R$ 2.999</p>
         <p class="preco">Por R$ 2.199</p>
         <p class="parcelado">em até 12x de R$ 183,25</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto7.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 
 <div class="produto-loja">
-    <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/3/0/306-7g21r21-w57.jpg">
+    <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/v/cv500l-water_fan-media-001_3_27.jpg">
     <div class="info">
         <h2>PC Gamer Intel i7-12700K, RTX 4080, 32GB RAM, SSD 2TB</h2>
         <div class="estrelas">★★★★★</div>
         <p class="preco-antigo">de R$ 15.999</p>
         <p class="preco">Por R$ 13.990</p>
         <p class="parcelado">em até 12x de R$ 1.165,83</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto8.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 
 <div class="produto-loja">
-    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTkffRraf5txVt2LrQMf-p6UdPvgmNNF8yu0xV0VJ_kmk4QIboRdD2aJ932wTSvO3ekeFiu2yYrZJarE6OjzaUYvS58fJ1vamDnakIsDdxXVDysoZGg41HJ3ChsJ4gg1QCfmaBRBg&usqp=CAc">
+    <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/c/o/computador-gamer-msi-m100a-preto-rgb-001.jpg">
     <div class="info">
         <h2>PC Gamer Ryzen 5 5600, GTX 1660 Super, 16GB RAM, SSD 500GB</h2>
         <div class="estrelas">★★★★☆</div>
         <p class="preco-antigo">de R$ 4.200</p>
         <p class="preco">Por R$ 3.499</p>
         <p class="parcelado">em até 12x de R$ 291,58</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto9.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 
 <div class="produto-loja">
-    <img src="https://carrefourbr.vtexassets.com/arquivos/ids/183016519/image-0.jpg?v=638736127911870000">
+    <img src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/g/a/gabinete-gamer-pichau-voyager-one-config-preto-001_5_34.jpg">
     <div class="info">
         <h2>PC Gamer Ryzen 9 7900X, RTX 4090, 64GB RAM, SSD 2TB</h2>
         <div class="estrelas">★★★★★</div>
         <p class="preco-antigo">de R$ 25.000</p>
         <p class="preco">Por R$ 21.990</p>
         <p class="parcelado">em até 12x de R$ 1.832,50</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto10.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 
@@ -650,9 +717,28 @@
         <p class="preco-antigo">de R$ 2.799</p>
         <p class="preco">Por R$ 2.199</p>
         <p class="parcelado">em até 12x de R$ 183,25</p>
-        <a href="#" class="btn-comprar">Comprar</a>
+        <a href="produto11.html" class="btn-comprar">Comprar</a>
     </div>
 </div>
 </div>
+<script>
+
+const header = document.querySelector(".header");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 100){
+
+        header.classList.add("scroll");
+
+    } else {
+
+        header.classList.remove("scroll");
+
+    }
+
+});
+
+</script>
 </body>
 </html>
