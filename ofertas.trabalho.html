@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HexaCore- Computadores</title>
+
+    <style>
+         :root {
+            --bg: #0f1115;
+            --card: #181c23;
+            --card2: #11151b;
+            --azul: #0066ff;
+            --azul-hover: #0052cc;
+            --texto: #ffffff;
+            --texto-sec: #9ca3af;
+            --borda: #252b36;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+ body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--texto);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    .cardpc {
+            width: 250px;
+            height: 150px;
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqCcCF8A-7fQcIoja1fpsBdIcbtRRtno6gaQ&s);
+            /* sua imagem */
+            background-size: cover;
+            /* faz preencher tudo */
+            background-position: center;
+            /* centraliza */
+        color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* joga o texto pra baixo */
+
+    transition: 0.3s;
+    }
+    .cardnot {
+          width: 250px;
+    height: 150px;
+    background-image:url(https://s2-techtudo.glbimg.com/CuWOBee5VDISWBbxRAdqnIIfKBg=/0x0:1500x844/984x0/smart/filters:strip_icc/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2024/N/D/R1GfAESMWHcKZEQb4H3Q/acer-nitro-v15-06.jpg); /* sua imagem */
+    background-size: cover; /* faz preencher tudo */
+    background-position: center; /* centraliza */
+    
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* joga o texto pra baixo */
+
+    transition: 0.3s;
+    }
+    .cardwork{
+          width: 250px;
+    height: 150px;
+    background-image:url(https://i.pcmag.com/imagery/reviews/06Hhy7Tq7TovbpNakYlLJVK-1.fit_lim.size_120x68.v1650989464.jpg); /* sua imagem */
+    background-size: cover; /* faz preencher tudo */
+    background-position: center; /* centraliza */
+    
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* joga o texto pra baixo */
+
+    transition: 0.3s;   }
+
+    .cardpc:hover {
+    transform: scale(1.05); /* aumenta um pouco */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* sombra */
+}
+    .cardnot:hover {
+    transform: scale(1.05); /* aumenta um pouco */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* sombra */
+}
+    .cardwork:hover {
+    transform: scale(1.05); /* aumenta um pouco */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); /* sombra */
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+    
+    
+
+ .header {
+            width: 100%;
+            background: var(--card2);
+            border-bottom: 1px solid var(--borda);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 18px 60px;
+        }
+
+        .logo img {
+            width: 220px;
+        }
+         .search {
+            flex: 1;
+            display: flex;
+            max-width: 700px;
+            margin: 0 50px;
+        }
+
+        .search input {
+            width: 100%;
+            background: var(--card);
+            border: 1px solid var(--borda);
+            padding: 15px 20px;
+            color: white;
+            outline: none;
+            border-radius: 14px 0 0 14px;
+            font-size: 15px;
+        }
+
+        .search button {
+            width: 65px;
+            border: none;
+            background: var(--azul);
+            color: white;
+            font-size: 20px;
+            border-radius: 0 14px 14px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search button:hover {
+            background: var(--azul-hover);
+        }
+        /* ICONES */
+
+        .icons {
+            display: flex;
+            gap: 25px;
+        }
+
+        .icons a {
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .icons a:hover {
+            color: var(--azul);
+        }
+   
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+
+            background: var(--card2);
+
+            padding: 18px;
+
+            border-top: 1px solid var(--borda);
+        }
+
+        .menu a {
+            position: relative;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: var(--azul);
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 0%;
+            height: 2px;
+            background: var(--azul);
+            transition: 0.3s;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+  
+    nav {
+        background-color: #333;
+        padding: 10px;
+        text-align: center;
+    }
+
+    nav a {
+        color: white;
+        margin: 10px;
+        text-decoration: none;
+    }  
+     /* BANNER */
+
+        .banner {
+            margin: 60px 80px;
+
+            padding: 70px;
+
+            border-radius: 24px;
+
+            background: linear-gradient(90deg,
+                    #0066ff,
+                    #0047b3);
+
+            text-align: center;
+        }
+
+        .banner h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            color: #dbeafe;
+            font-size: 18px;
+        }
+        
+        .card-conteudo {
+            position: relative;
+            z-index: 2;
+            padding: 25px;
+        }
+
+        .card-conteudo h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .card-conteudo p {
+            color: #d1d5db;
+        }
+
+        /* TITULO */
+
+        .titulo {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 50px;
+        }
+
+        .titulo h1 {
+            font-size: 40px;
+        }
+
+        /* PRODUTOS */
+
+        .produtos-destaque {
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 25px;
+
+            padding: 0 80px 80px;
+        }
+
+        .produto-loja {
+
+    width: 100%;
+
+    background: var(--card);
+
+    border: 1px solid var(--borda);
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+}
+
+        .produto-loja:hover {
+            transform: translateY(-8px);
+
+            border-color: var(--azul);
+
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .produto-loja img {
+            width: 100%;
+            height: 230px;
+
+            object-fit: contain;
+
+            background: var(--card2);
+
+            padding: 20px;
+        }
+
+        .info {
+            padding: 20px;
+        }
+
+        .info h2 {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .estrelas {
+            color: #facc15;
+            margin-bottom: 10px;
+        }
+
+        .preco-antigo {
+            color: var(--texto-sec);
+            text-decoration: line-through;
+            margin-bottom: 5px;
+        }
+
+        .preco {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .parcelado {
+            color: var(--texto-sec);
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .btn-comprar {
+            display: block;
+
+            width: 100%;
+
+            text-align: center;
+
+            background: var(--azul);
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+        .btn-comprar:hover {
+            background: var(--azul-hover);
+        }
+
+        /* FOOTER */
+
+        footer {
+            border-top: 1px solid var(--borda);
+
+            background: var(--card2);
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: var(--texto-sec);
+        }
+         /* RESPONSIVO */
+
+       
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- ESTILO DO MODAL DE LOGIN --- */
+        .modal-login {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-conteudo {
+            background-color: #1a1a1a;
+            margin: 10% auto;
+            padding: 30px;
+            border: 1px solid #0047b3;
+            width: 320px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+        }
+
+        .fechar {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #aaa;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-conteudo h2 {
+            color: #0047b3;
+            margin-bottom: 20px;
+        }
+
+        .modal-conteudo input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn-login {
+            background: #0047b3;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .links-modal {
+            margin-top: 15px;
+            font-size: 13px;
+        }
+
+        .links-modal a {
+            color: #0047b3;
+            text-decoration: underline;
+        }
+
+        /* --- NOVO: ESTILO DO CARRINHO LATERAL --- */
+        .carrinho-lateral {
+            height: 100%;
+            width: 0; /* Começa fechado */
+            position: fixed;
+            z-index: 2000; /* Acima de tudo */
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s; /* Efeito de deslizar */
+            padding-top: 60px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+            border-left: 2px solid #0047b3;
+        }
+
+        .carrinho-lateral .fechar-carrinho {
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 36px;
+            color: #0047b3;
+            cursor: pointer;
+        }
+
+        .carrinho-conteudo {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item-carrinho-vazio {
+            color: #888;
+            margin-top: 50px;
+        }
+
+        .btn-finalizar {
+            background-color: #0047b3;
+            color: black;
+            padding: 15px;
+            text-decoration: none;
+            display: block;
+            margin: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+ 
+    </style>
+</head>
+
+<body>
+
+<!-- MODAL DE LOGIN -->
+    <div id="modalLogin" class="modal-login">
+        <div class="modal-conteudo">
+            <span class="fechar" onclick="fecharLogin()">&times;</span>
+            <h2>Área do Cliente</h2>
+            <input type="text" placeholder="E-mail ou Usuário">
+            <input type="password" placeholder="Senha">
+            <button class="btn-login">ENTRAR</button>
+            <div class="links-modal">
+                <p>Não tem conta? <a href="#">Cadastre-se</a></p>
+                <p><a href="#">Esqueci minha senha</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOVO: CARRINHO LATERAL (SIDEBAR) -->
+    <div id="meuCarrinho" class="carrinho-lateral">
+        <span class="fechar-carrinho" onclick="fecharCarrinho()">&times;</span>
+        <div class="carrinho-conteudo">
+            <h2 style="color: #ffffff;">Meu Carrinho</h2>
+            <hr border="1" color="#333">
+            <p class="item-carrinho-vazio">Seu carrinho está vazio :(</p>
+            <!-- Aqui entrariam os itens futuramente -->
+            <a href="#" class="btn-finalizar">FINALIZAR COMPRA</a>
+        </div>
+    </div>
+
+  <header class="header">
+
+    <!-- TOPO -->
+    <div class="header-top">
+
+        <div class="logo">
+            <a href="index.html">
+                <img src="https://i.imgur.com/bri4wau.png">
+            </a>
+        </div>
+
+        <div class="search">
+            <input type="text" placeholder="O que você está procurando?">
+            <button>🔍</button>
+        </div>
+          
+        <div class="icons">
+            <span class="user">
+                <a href="javascript:void(0)" onclick="abrirLogin()">👤 Minha Conta</a>
+            </span>
+
+            <span class="user">
+                <!-- Alterado para abrir o carrinho -->
+                <a href="javascript:void(0)" onclick="abrirCarrinho()">🛒 Carrinho</a>
+            </span>
+        </div>
+    </header>
+    
+         <nav class="menu">
+            <a href="#">PC GAMER</a>
+            <a href="#">Notebooks</a>
+            <a href="#">Periféricos</a>
+            <a href="#">Ofertas</a>
+        </nav>
+
+
+    <section class="banner">
+        <h2>SUPER PROMOÇÃO</h2>
+        <p>Descontos de até 35% em PCs Gamers e Periféricos</p>
+         <a href="#" class="btn-banner">Ver Ofertas</a>
+    </section>
+
+<div class="container">
+
+        <!-- Produto 1 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/51lu7SBf7YL._AC_SY300_SX300_QL70_ML2_.jpg">
+
+            <div class="info">
+                <h2>PC Gamer RTX 4060</h2>
+                <p class="descricao">Ryzen 5 • RTX 4060 • 16GB RAM • SSD 256TB</p>
+                <div class="preco-antigo">R$ 6.499,90</div>
+                <div class="preco">R$ 4.999,90</div>
+                <div class="parcelado"> em até 12x de R$ 416,66</div>
+                <a href="produtos 1 ofertas.html" class="btn-comprar"> Comprar </a>
+            </div>
+        </div>
+        <!-- Produto 2 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/8189uwDnMkL._AC_SX679_.jpg">
+
+            <div class="info">
+                <h2>Mouse Gamer Razer</h2>
+                <p class="descricao">6400 DPI  • Ultra leve</p>
+                 <div class="estrelas">★★★★☆</div>
+                <div class="preco-antigo">R$ 229,90</div>
+                <div class="preco">R$ 149,90</div>
+                <div class="parcelado"> em até 6x de R$ 24,98 </div>
+                <a href="produtos 2 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+
+        <!-- Produto 3--> 
+         
+          <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/41Qzv5IRAGL._AC_SX679_.jpg">
+
+            <div class="info">
+                <h2>Mouse Gamer RGB</h2>
+                <p class="descricao">1600 DPI • RGB • Ultra Leve</p>
+                <div class="estrela">★★★★☆</div>
+                <div class="preco-antigo"> R$ R$199,99</div>
+                <div class="preco"> R$ 129,99</div>
+                <div class="parcelado"> em  até 4 vezes de R$21,66 </div>
+                <a href="produtos 3 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+          </div>
+
+         <!-- Produto 4--> 
+         
+          <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/51NvYDtjy0L._AC_SX679_.jpg">
+
+            <div class="info">
+                <h2>MoMouse Gamer Sem Fio Logitech G703 LIGHTSPEED com RGB LIGHTSYNC</h2>
+                <p class="descricao">6 Botões Programáveis, Sensor HERO 25K e Bateria Recarregável - Compatível com POWERPLAY</p>
+                <div classs="estrela">★★★★☆</div>
+                <div class="preco-antigo"> R$ R$389,99</div>
+                <div class="preco"> R$ 289,99</div>
+                <div class="parcelado"> em  até 5 vezes de R$57,99 </div>
+                <a href="produtos 4 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+          </div>
+
+          <!-- Produto 5 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/51xoetNmlOL._AC_SX679_.jpg">
+
+            <div class="info">
+                <h2>Teclado Mecânico Redragon Dark Avenger RGB Lunar White Switch Vermelho K568W-RGB</h2>
+                <p class="descricao">Lunar Vermelho • Iluminação RGB Redragon Chroma Mk2 por tecla individual</p>
+                 <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo">R$ 269,90</div>
+                <div class="preco">R$ 200,00</div>
+                <div class="parcelado"> em até 5x de R$ 39,00</div>
+                <a href="produtos 5 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+            </div>
+
+    
+        <!-- Produto 6-->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/71PujoJuUbL._AC_SX300_SY300_QL70_ML2_.jpg">
+
+            <div class="info">
+                <h2>Monitor Gamer Samsung Odyssey Neo G9</h2>
+                <p class="descricao"> 57p, Tela Curva Super Ultrawide, 240Hz, FreeSync Premium Pro</p>
+                 <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo">R$ 17.199,99</div>
+                <div class="preco">R$ 15.000,99</div>
+                <div class="parcelado"> em até 10x de R$ 89,99</div>
+                <a href="produtos 6 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+        <!-- Produto 7-->
+        <div class="produto-loja">
+            <img src="http://m.media-amazon.com/images/I/71VTXapXHIL._AC_SX679_.jpg">
+
+            <div class="info">
+                <h2>Monitor Gamer Curvo AOC AGON G4Z 27"</h2>
+                <p class="descricao"> Full HD • 1ms • 27 Polegadas</p>
+                 <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo">R$ 1.799,90</div>
+                <div class="preco">R$ 1.249,90</div>
+                <div class="parcelado">em até 12x de R$ 104,15</div>
+                <a href="produtos 7 oferta.html" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+
+       <!-- Produto 8--> 
+         <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/81wfdDTIjHS._AC_SX679_.jpg">
+
+            <div class="info">
+                <h2>Monitor Gamer Sansung Odyssey</h2>
+                <p class="descricão">Neo G9, 57p, Tela Curva Super Ultrawide, 240Hz, FreeSync Premium Pro</p>
+                 <div class="estrelas">★★★★☆</div>
+                <div class="preco-antigo">R$ 2.200,00</div>
+                <div class="preco">R$ 1.600,00</div>
+                <div class="parcelado"> em até 6x de R$266,66</div>
+                <a href="produtos 8 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+         </div>
+
+    
+
+        <!-- Produto 9-->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/71RSZdY7pJL._AC_SY300_SX300_QL70_ML2_.jpg">
+
+            <div class="info">
+                <h2>Headset Gamer Sem Fio Logitech G733 7.1 Dolby Surround com Tecnologia Blue VO!CE</h2>
+                <p class="descricao">RGB LIGHTSYNC, Drivers de Áudio Avançados e Bateria Recarregável para PC e PlayStation - Branco</p>
+                 <div class="estrelas">★★★★☆</div>
+                <div class="preco-antigo">R$ 1.230,90</div>
+                <div class="preco">R$ 999,90</div>
+                <div class="parcelado">em até 8x de R$ 124,98</div>
+                <a href="produtos 9 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+
+        <!-- Produto 10 -->
+        <div class="produto-loja">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_807931-MLB76300626898_052024-F.we">
+
+            <div class="info">
+                <h2>Mousepad Gamer Speed</h2>
+                <p class="descricao">Base antiderrapante • RGB lateral</p>
+                
+                <div class="preco-antigo">R$ 149,90</div>
+                 <div class="estrelas">★★★★☆</div>
+                <div class="preco">R$ 89,90 </div>
+                <div class="parcelado"> em até 4x de R$ 22,47</div>
+                <a href="produto 10 ofertas.html" class="btn-comprar">Comprar</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
