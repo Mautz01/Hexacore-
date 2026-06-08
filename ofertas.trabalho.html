@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HexaCore - Ofertas</title>
+<style>
+/* ===== VARIÁVEIS GLOBAIS ===== */
+:root {
+    --bg: #0f1115;
+    --card: #181c23;
+    --card2: #11151b;
+    --card3: #1a1d24;
+    --azul: #0066ff;
+    --azul-hover: #0052cc;
+    --destaque: #00b7ff;
+    --texto: #ffffff;
+    --texto-sec: #9ca3af;
+    --cinza: #9ca3af;
+    --borda: #2a2f3a;
+    --verde: #00c853;
+    --fundo: #0f1115;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--texto);
+    overflow-x: hidden;
+    padding-top: 130px;
+}
+
+a { text-decoration: none; color: white; }
+
+/* ===== HEADER ===== */
+.header {
+    width: 100%;
+    background: var(--card2);
+    border-bottom: 1px solid var(--borda);
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+}
+
+/* SCROLL — header compacto */
+.header.scroll {
+    background: rgba(17,21,27,0.92);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+.header.scroll .menu {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+}
+
+.header.scroll .header-top {
+    padding: 10px 40px;
+}
+
+.header.scroll .logo img {
+    width: 170px;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 60px;
+}
+
+.logo img { width: 220px; }
+
+.search {
+    flex: 1;
+    display: flex;
+    max-width: 700px;
+    margin: 0 50px;
+}
+
+.search input {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--borda);
+    padding: 15px 20px;
+    color: white;
+    outline: none;
+    border-radius: 14px 0 0 14px;
+    font-size: 15px;
+}
+
+.search button {
+    width: 65px;
+    border: none;
+    background: var(--azul);
+    color: white;
+    font-size: 20px;
+    border-radius: 0 14px 14px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search button:hover { background: var(--azul-hover); }
+
+.icons { display: flex; gap: 25px; }
+
+.icons a {
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.icons a:hover { color: var(--azul); }
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    background: var(--card2);
+    padding: 18px;
+    border-top: 1px solid var(--borda);
+}
+
+.menu a {
+    position: relative;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.menu a:hover { color: var(--azul); }
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0%;
+    height: 2px;
+    background: var(--azul);
+    transition: 0.3s;
+}
+
+.menu a:hover::after { width: 100%; }
+
+/* ===== MODAL LOGIN ===== */
+.modal-login {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-conteudo {
+    background-color: #1a1a1a;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #0047b3;
+    width: 320px;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+}
+
+.fechar {
+    position: absolute;
+    right: 15px; top: 10px;
+    color: #aaa;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-conteudo h2 { color: #0047b3; margin-bottom: 20px; }
+
+.modal-conteudo input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-login {
+    background: #0047b3;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    width: 100%;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.links-modal { margin-top: 15px; font-size: 13px; }
+.links-modal a { color: #0047b3; text-decoration: underline; }
+
+/* ===== CARRINHO LATERAL ===== */
+.carrinho-lateral {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 2000;
+    top: 0; right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    border-left: 2px solid #0047b3;
+}
+
+.carrinho-lateral .fechar-carrinho {
+    position: absolute;
+    top: 20px; left: 25px;
+    font-size: 36px;
+    color: #0047b3;
+    cursor: pointer;
+}
+
+.carrinho-conteudo { padding: 20px; text-align: center; }
+.item-carrinho-vazio { color: #888; margin-top: 50px; }
+
+.btn-finalizar {
+    background-color: #0047b3;
+    color: black;
+    padding: 15px;
+    text-decoration: none;
+    display: block;
+    margin: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* ===== PÁGINA OFERTAS ===== */
+#pagina-ofertas { display: block; }
+
+.banner {
+    margin: 60px 80px;
+    padding: 70px;
+    border-radius: 24px;
+    background: linear-gradient(90deg, #0066ff, #0047b3);
+    text-align: center;
+}
+
+.banner h2 { font-size: 40px; margin-bottom: 10px; }
+.banner p { color: #dbeafe; font-size: 18px; }
+
+.titulo-secao {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.titulo-secao h1 { font-size: 40px; }
+
+.produtos-destaque {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+    padding: 0 80px 80px;
+}
+
+.produto-loja {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 22px;
+    overflow: hidden;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.produto-loja:hover {
+    transform: translateY(-8px);
+    border-color: var(--azul);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+.produto-loja img {
+    width: 100%;
+    height: 230px;
+    object-fit: contain;
+    background: var(--card2);
+    padding: 20px;
+}
+
+.info { padding: 20px; }
+.info h2 { font-size: 15px; line-height: 1.5; margin-bottom: 12px; font-weight: 600; }
+.estrelas { color: #facc15; margin-bottom: 10px; }
+.preco-antigo-lista { color: var(--texto-sec); text-decoration: line-through; margin-bottom: 5px; }
+.preco-lista { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+.parcelado { color: var(--texto-sec); font-size: 13px; margin-bottom: 18px; }
+
+.btn-comprar {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--azul);
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.3s;
+    border: none;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.btn-comprar:hover { background: var(--azul-hover); }
+
+/* ===== PÁGINA PRODUTO ===== */
+#pagina-produto {
+    display: none;
+    padding-top: 40px;
+}
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--borda);
+    color: white;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 20px 40px;
+    transition: 0.3s;
+}
+
+.btn-voltar:hover { background: var(--azul); border-color: var(--azul); }
+
+.container-produto {
+    max-width: 1400px;
+    margin: auto;
+    padding: 20px 40px 40px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 40px;
+}
+
+.galeria {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.imagem-principal {
+    width: 60%;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+}
+
+.miniaturas { display: flex; gap: 15px; flex-wrap: wrap; }
+
+.miniaturas img {
+    width: 70px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.3s;
+}
+
+.miniaturas img:hover {
+    border-color: var(--destaque);
+    transform: scale(1.05);
+}
+
+.info-produto {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 20px;
+    padding: 30px;
+    height: fit-content;
+    position: sticky;
+    top: 20px;
+}
+
+.titulo-produto { font-size: 28px; margin-bottom: 15px; }
+.avaliacao { color: gold; margin-bottom: 15px; }
+
+.preco-antigo {
+    color: var(--cinza);
+    text-decoration: line-through;
+    font-size: 18px;
+}
+
+.preco {
+    font-size: 42px;
+    font-weight: bold;
+    color: var(--verde);
+    margin: 10px 0;
+}
+
+.pix { color: var(--cinza); margin-bottom: 20px; }
+
+.parcelamento {
+    background: #13161c;
+    border: 1px solid var(--borda);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    line-height: 30px;
+}
+
+.botao-comprar {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 14px;
+    background: var(--destaque);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-bottom: 15px;
+}
+
+.botao-comprar:hover { transform: scale(1.02); background: #0095cc; }
+
+.botao-carrinho {
+    width: 100%;
+    padding: 16px;
+    border-radius: 14px;
+    border: 2px solid var(--destaque);
+    background: transparent;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-carrinho:hover { background: var(--destaque); }
+
+.descricao {
+    max-width: 1400px;
+    margin: 20px auto 40px;
+    padding: 0 40px;
+}
+
+.descricao-inner {
+    background: var(--card);
+    border: 1px solid var(--borda);
+    border-radius: 20px;
+    padding: 35px;
+}
+
+.descricao-inner h2 { margin-bottom: 20px; font-size: 28px; }
+.descricao-inner p { color: var(--cinza); line-height: 30px; font-size: 17px; }
+
+.especificacoes { margin-top: 30px; }
+
+.item-spec {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--borda);
+}
+
+.nome-spec { color: var(--cinza); }
+.valor-spec { font-weight: bold; }
+
+/* ===== FOOTER ===== */
+footer {
+    border-top: 1px solid var(--borda);
+    background: var(--card2);
+    text-align: center;
+    padding: 40px;
+    color: var(--texto-sec);
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 1000px) {
+    .container-produto {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+    .info-produto { position: static; }
+}
+
+@media (max-width: 768px) {
+    .header-top { padding: 15px 20px; }
+    .banner { margin: 20px; padding: 40px 20px; }
+    .produtos-destaque { padding: 0 20px 40px; }
+    .logo img { width: 160px; }
+    .search { margin: 0 15px; }
+    .descricao { padding: 0 20px; }
+    .btn-voltar { margin: 15px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- MODAL DE LOGIN -->
+<div id="modalLogin" class="modal-login">
+    <div class="modal-conteudo">
+        <span class="fechar" onclick="fecharLogin()">&times;</span>
+        <h2>Área do Cliente</h2>
+        <input type="text" placeholder="E-mail ou Usuário">
+        <input type="password" placeholder="Senha">
+        <button class="btn-login">ENTRAR</button>
+        <div class="links-modal">
+            <p>Não tem conta? <a href="#">Cadastre-se</a></p>
+            <p><a href="#">Esqueci minha senha</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- CARRINHO LATERAL -->
+<div id="meuCarrinho" class="carrinho-lateral">
+    <span class="fechar-carrinho" onclick="fecharCarrinho()">&times;</span>
+    <div class="carrinho-conteudo">
+        <h2 style="color:#ffffff;">Meu Carrinho</h2>
+        <hr style="border-color:#333; margin:15px 0;">
+        <p class="item-carrinho-vazio">Seu carrinho está vazio :(</p>
+        <a href="#" class="btn-finalizar">FINALIZAR COMPRA</a>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-top">
+        <div class="logo">
+            <a href="javascript:void(0)" onclick="voltarOfertas()">
+                <img src="https://i.imgur.com/bri4wau.png">
+            </a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="O que você está procurando?">
+            <button>🔍</button>
+        </div>
+        <div class="icons">
+            <a href="javascript:void(0)" onclick="abrirLogin()">👤 Minha Conta</a>
+            <a href="javascript:void(0)" onclick="abrirCarrinho()">🛒 Carrinho</a>
+        </div>
+    </div>
+    <nav class="menu">
+        <a href="Pc gamer.html">PC GAMER</a>
+        <a href="Notebook.html">NOTEBOOKS</a>
+        <a href="https://mautz01.github.io/perifericos-hexacore/">PERIFÉRICOS</a>
+        <a href="javascript:void(0)" onclick="voltarOfertas()">OFERTAS</a>
+    </nav>
+</header>
+
+<!-- ===================== PÁGINA DE OFERTAS ===================== -->
+<div id="pagina-ofertas">
+
+    <section class="banner">
+        <h2>SUPER PROMOÇÃO</h2>
+        <p>Descontos de até 35% em PCs Gamers e Periféricos</p>
+    </section>
+
+    <div class="titulo-secao"><h1>Ofertas da Semana</h1></div>
+
+    <div class="produtos-destaque">
+
+        <!-- Produto 1 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/51lu7SBf7YL._AC_SY300_SX300_QL70_ML2_.jpg">
+            <div class="info">
+                <h2>PC Gamer TOP Concórdia</h2>
+                <p class="descricao-card">i3 14100F • RTX 4060 • 16GB • SSD 256GB</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 6.499,99</div>
+                <div class="preco-lista">R$ 4.999,99</div>
+                <div class="parcelado">em até 12x de R$ 416,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(1)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 2 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/8189uwDnMkL._AC_SX679_.jpg">
+            <div class="info">
+                <h2>Mouse Gamer Razer DeathAdder Essential</h2>
+                <p class="descricao-card">6400 DPI • Ultra leve • Classic Black</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 229,99</div>
+                <div class="preco-lista">R$ 149,99</div>
+                <div class="parcelado">em até 12x de R$ 12,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(2)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 3 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/41Qzv5IRAGL._AC_SX679_.jpg">
+            <div class="info">
+                <h2>Mouse Gamer Redragon Cobra</h2>
+                <p class="descricao-card">1600 DPI • RGB • Sem Fio • Óptico</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 199,99</div>
+                <div class="preco-lista">R$ 129,99</div>
+                <div class="parcelado">em até 12x de R$ 16,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(3)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 4 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/51NvYDtjy0L._AC_SL1000_.jpg">
+            <div class="info">
+                <h2>Mouse Gamer Sem Fio Logitech G703 LIGHTSPEED</h2>
+                <p class="descricao-card">6 Botões Programáveis • Sensor HERO 25K • RGB</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 389,99</div>
+                <div class="preco-lista">R$ 289,99</div>
+                <div class="parcelado">em até 12x de R$ 23,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(4)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 5 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/51xoetNmlOL._AC_SX679_.jpg">
+            <div class="info">
+                <h2>Teclado Mecânico Redragon Dark Avenger</h2>
+                <p class="descricao-card">Lunar White • Switch Vermelho • RGB K568W</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 269,99</div>
+                <div class="preco-lista">R$ 199,99</div>
+                <div class="parcelado">em até 12x de R$ 16,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(5)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 6 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/71PujoJuUbL._AC_SX300_SY300_QL70_ML2_.jpg">
+            <div class="info">
+                <h2>Monitor Gamer Samsung Odyssey Neo G9</h2>
+                <p class="descricao-card">57" • Mini LED • 240Hz • 1ms • Super Ultrawide</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 17.199,00</div>
+                <div class="preco-lista">R$ 15.000,00</div>
+                <div class="parcelado">em até 12x de R$ 1.249,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(6)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 7 -->
+        <div class="produto-loja">
+            <img src="http://m.media-amazon.com/images/I/71VTXapXHIL._AC_SX679_.jpg">
+            <div class="info">
+                <h2>Monitor Gamer Curvo AOC AGON G4Z</h2>
+                <p class="descricao-card">27" • 300Hz • 0,3ms • HDR10 • Base Ajustável</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 1.600,00</div>
+                <div class="preco-lista">R$ 1.199,00</div>
+                <div class="parcelado">em até 12x de R$ 99,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(7)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 8 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/81wfdDTIjHS._AC_SX679_.jpg">
+            <div class="info">
+                <h2>Monitor Gamer Curvo Samsung Odyssey G5</h2>
+                <p class="descricao-card">34" • Ultra WQHD • 165Hz • 1ms • Freesync</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 2.200,00</div>
+                <div class="preco-lista">R$ 1.600,00</div>
+                <div class="parcelado">em até 12x de R$ 132,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(8)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 9 -->
+        <div class="produto-loja">
+            <img src="https://m.media-amazon.com/images/I/71RSZdY7pJL._AC_SX679_.jpg">
+            <div class="info">
+                <h2>Headset Gamer Sem Fio Logitech G733 7.1 Dolby</h2>
+                <p class="descricao-card">Blue VO!CE • RGB LIGHTSYNC • Bateria Recarregável</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 1.229,99</div>
+                <div class="preco-lista">R$ 999,99</div>
+                <div class="parcelado">em até 12x de R$ 102,99</div>
+                <button class="btn-comprar" onclick="abrirProduto(9)">Comprar</button>
+            </div>
+        </div>
+
+        <!-- Produto 10 -->
+        <div class="produto-loja">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_2X_807931-MLB76300626898_052024-F.webp">
+            <div class="info">
+                <h2>Mousepad Gamer Speed Extra Grande</h2>
+                <p class="descricao-card">120x60cm • Ninja Purple • Base Antiderrapante</p>
+                <div class="estrelas">★★★★★</div>
+                <div class="preco-antigo-lista">R$ 149,99</div>
+                <div class="preco-lista">R$ 89,99</div>
+                <div class="parcelado">em até 12x de R$ 7,49</div>
+                <button class="btn-comprar" onclick="abrirProduto(10)">Comprar</button>
+            </div>
+        </div>
+
+    </div>
+</div><!-- fim pagina-ofertas -->
+
+<!-- ===================== PÁGINA DE PRODUTO ===================== -->
+<div id="pagina-produto">
+
+    <button class="btn-voltar" onclick="voltarOfertas()">← Voltar às Ofertas</button>
+
+    <div class="container-produto">
+
+        <div class="galeria">
+            <img class="imagem-principal" id="imagemPrincipal" src="">
+            <div class="miniaturas" id="miniaturas"></div>
+        </div>
+
+        <div class="info-produto">
+            <h1 class="titulo-produto" id="prodTitulo"></h1>
+            <div class="avaliacao" id="prodAvaliacao"></div>
+            <div class="preco-antigo" id="prodPrecoAntigo"></div>
+            <div class="preco" id="prodPreco"></div>
+            <div class="pix">À vista no PIX com 15% OFF</div>
+            <div class="parcelamento" id="prodParcelamento"></div>
+            <button class="botao-comprar">COMPRAR AGORA</button>
+            <button class="botao-carrinho">ADICIONAR AO CARRINHO</button>
+        </div>
+
+    </div>
+
+    <div class="descricao">
+        <div class="descricao-inner">
+            <h2>Descrição do Produto</h2>
+            <p id="prodDescricao"></p>
+            <div class="especificacoes" id="prodEspecificacoes"></div>
+        </div>
+    </div>
+
+</div><!-- fim pagina-produto -->
+
+<footer>
+    <p>© 2024 HexaCore — Todos os direitos reservados</p>
+</footer>
+
+<script>
+// ===== DADOS DOS PRODUTOS =====
+const produtos = {
+    1: {
+        titulo: "PC Gamer TOP Concórdia",
+        avaliacao: "★★★★★ (89 avaliações)",
+        precoAntigo: "R$ 6.499,99",
+        preco: "R$ 4.999,99",
+        parcelamento: "✔ 12x de R$ 416,99 sem juros <br>✔ 10x de R$ 499,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "PC Gamer TOP Concórdia Processador i3 14100F 16GB SSD 256GB RTX 4060 Fonte 500W FreeDos. Marca: Concórdia",
+        specs: [
+            ["Marca", "Concordia"],
+            ["Cor", "Preto"],
+            ["Processador", "I3 14100F"],
+            ["Memória", "2 DDR de 16 GB"],
+            ["Placa de Vídeo", "RTX 4060"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/51lu7SBf7YL._AC_SY300_SX300_QL70_ML2_.jpg",
+            "https://m.media-amazon.com/images/I/41uUaXFEPzL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/51-MbCVTXxL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/51rLycg+w-L._AC_SX679_.jpg"
+        ]
+    },
+    2: {
+        titulo: "Mouse Gamer Razer DeathAdder Essential, Classic Black",
+        avaliacao: "★★★★★ (99 avaliações)",
+        precoAntigo: "R$ 229,99",
+        preco: "R$ 149,99",
+        parcelamento: "✔ 12x de R$ 12,99 sem juros <br>✔ 10x de R$ 13,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Mouse gamer Razer DeathAdder Essential, Classic Black",
+        specs: [
+            ["Marca", "Razer"],
+            ["Cor", "Preto"],
+            ["Tecnologia de conectividade", "Com Fio"],
+            ["Características especiais", "Botões programáveis, Design ergonômico, Durável, Leve, Sensor óptico"],
+            ["Tecnologia de detecção de movimento", "Óptico"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/8189uwDnMkL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/81QPJeREYXL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/61Vbk62PIjS._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/71VkGcn9VZL._AC_SX679_.jpg"
+        ]
+    },
+    3: {
+        titulo: "Mouse Gamer Redragon Cobra",
+        avaliacao: "★★★★★ (110 avaliações)",
+        precoAntigo: "R$ 199,99",
+        preco: "R$ 129,99",
+        parcelamento: "✔ 12x de R$ 16,99 sem juros <br>✔ 10x de R$ 19,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Mouse Gamer Redragon Cobra PRO Sem Fio Preto M711-PRO",
+        specs: [
+            ["Marca", "Redragon"],
+            ["Cor", "Preto"],
+            ["Tecnologia de conectividade", "USB / WIFI"],
+            ["Características especiais", "Botões Programáveis / Sem Fio"],
+            ["Tecnologia de detecção de movimento", "Óptico"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/41Qzv5IRAGL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/41DSsXv1QJL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/418T0P5QMbL._AC_SL1000_.jpg",
+            "http://m.media-amazon.com/images/I/41IGQfURnIL._AC_SL1000_.jpg"
+        ]
+    },
+    4: {
+        titulo: "Mouse Gamer Sem Fio Logitech G703 LIGHTSPEED",
+        avaliacao: "★★★★★ (98 avaliações)",
+        precoAntigo: "R$ 389,99",
+        preco: "R$ 289,99",
+        parcelamento: "✔ 12x de R$ 23,99 sem juros <br>✔ 10x de R$ 28,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Mouse Gamer Sem Fio Logitech G703 LIGHTSPEED com RGB LIGHTSYNC, 6 Botões Programáveis, Sensor HERO 25K e Bateria Recarregável - Compatível com POWERPLAY",
+        specs: [
+            ["Marca", "LogiTech"],
+            ["Cor", "Preto"],
+            ["Tecnologia de conectividade", "Sem Fio"],
+            ["Características especiais", "Sem Fio"],
+            ["Tecnologia de detecção de movimento", "Óptico"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/51NvYDtjy0L._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/51fgVUBaPRL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/51Lk237jGRL._AC_SL1000_.jpg",
+            "https://m.media-amazon.com/images/I/61XySPdqr+L._AC_SL1000_.jpg"
+        ]
+    },
+    5: {
+        titulo: "Teclado Mecânico Redragon Dark Avenger",
+        avaliacao: "★★★★★ (88 avaliações)",
+        precoAntigo: "R$ 269,99",
+        preco: "R$ 199,99",
+        parcelamento: "✔ 12x de R$ 16,99 sem juros <br>✔ 10x de R$ 19,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Teclado Mecânico Redragon Dark Avenger RGB Lunar White Switch Vermelho K568W-RGB",
+        specs: [
+            ["Marca", "Redragon"],
+            ["Cor", "Lunar White"],
+            ["Tecnologia de conectividade", "USB-A"],
+            ["Descrição do Teclado", "Mecânico"],
+            ["Adequação do controle por rádio", "Multimídia"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/51xoetNmlOL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/51WUwNmKfJL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/51ZeiizpP6L._AC_SX679_.jpg"
+        ]
+    },
+    6: {
+        titulo: "Monitor Gamer Samsung Odyssey Neo G9",
+        avaliacao: "★★★★★ (67 avaliações)",
+        precoAntigo: "R$ 17.199,00",
+        preco: "R$ 15.000,00",
+        parcelamento: "✔ 12x de R$ 1.249,99 sem juros <br>✔ 10x de R$ 1.499,00 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Monitor Gamer Samsung Odyssey 57\" Mini LED, DUHD, 240Hz, 1ms, tela super ultrawide, HDMI, Display Port, USB, Freesync Premium Pro, com ajuste de altura, branco, série Neo G9",
+        specs: [
+            ["Marca", "Samsung"],
+            ["Tamanho da Tela", "57 Polegadas"],
+            ["Proporção de Tela", "32:9"],
+            ["Descrição da Superfície da Tela", "Fosco"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/71PujoJuUbL._AC_SX300_SY300_QL70_ML2_.jpg",
+            "https://m.media-amazon.com/images/I/61eBgadtLoL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/71hZ8hhU2fL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/61j1CqbBEvL._AC_SL1500_.jpg"
+        ]
+    },
+    7: {
+        titulo: "Monitor Gamer Curvo AOC AGON G4Z",
+        avaliacao: "★★★★★ (67 avaliações)",
+        precoAntigo: "R$ 1.600,00",
+        preco: "R$ 1.199,00",
+        parcelamento: "✔ 12x de R$ 99,99 sem juros <br>✔ 10x de R$ 119,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Monitor Gamer Curvo AOC AGON G4Z 27\" 300Hz 0,3ms HDR10 Base Ajustável C27G4Z/P",
+        specs: [
+            ["Marca", "AOC"],
+            ["Tamanho da Tela", "27 Polegadas"],
+            ["Proporção de Tela", "16:9"],
+            ["Descrição da Superfície da Tela", "Fosco"]
+        ],
+        imagens: [
+            "http://m.media-amazon.com/images/I/71VTXapXHIL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/611aCblkNvL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/51g8OXolhWL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/61mIglaJudL._AC_SL1500_.jpg"
+        ]
+    },
+    8: {
+        titulo: "Monitor Gamer Curvo Samsung Odyssey G5",
+        avaliacao: "★★★★★ (67 avaliações)",
+        precoAntigo: "R$ 2.200,00",
+        preco: "R$ 1.600,00",
+        parcelamento: "✔ 12x de R$ 132,99 sem juros <br>✔ 10x de R$ 159,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Monitor Gamer Curvo Samsung Odyssey 34'', Ultra WQHD, 165Hz, 1ms, tela ultrawide, HDMI, Display Port, Freesync Premium, preto, série G5",
+        specs: [
+            ["Marca", "Samsung"],
+            ["Tamanho da Tela", "34 Polegadas"],
+            ["Resolução da Tela", "UWQHD (3.440 x 1.440)"],
+            ["Proporção de Tela", "21:09"],
+            ["Descrição da Superfície da Tela", "Fosco"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/81wfdDTIjHS._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/61E2onzFEZS._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/81Ol5CYCdwL._AC_SL1500_.jpg",
+            "https://m.media-amazon.com/images/I/81iN4ZWzqrL._AC_SL1500_.jpg"
+        ]
+    },
+    9: {
+        titulo: "Headset Gamer Sem Fio Logitech G733 7.1 Dolby",
+        avaliacao: "★★★★★ (89 avaliações)",
+        precoAntigo: "R$ 1.229,99",
+        preco: "R$ 999,99",
+        parcelamento: "✔ 12x de R$ 102,99 sem juros <br>✔ 10x de R$ 122,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Headset Gamer Sem Fio Logitech G733 7.1 Dolby Surround com Tecnologia Blue VO!CE, RGB LIGHTSYNC, Drivers de Áudio Avançados e Bateria Recarregável para PC e PlayStation - Branco",
+        specs: [
+            ["Marca", "LogiTech"],
+            ["Cor", "Branco"],
+            ["Colocação na orelha", "Circumaurais"],
+            ["Fator de forma dos fones de ouvido", "Circumaurais"],
+            ["Impedância", "39 Ohms"]
+        ],
+        imagens: [
+            "https://m.media-amazon.com/images/I/71RSZdY7pJL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/81mj9vmj0cL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/81xT7P4+tZL._AC_SX679_.jpg",
+            "https://m.media-amazon.com/images/I/81t2OQvDF2L._AC_SL1500_.jpg"
+        ]
+    },
+    10: {
+        titulo: "Mousepad Gamer Speed Extra Grande",
+        avaliacao: "★★★★★ (98 avaliações)",
+        precoAntigo: "R$ 149,99",
+        preco: "R$ 89,99",
+        parcelamento: "✔ 12x de R$ 7,49 sem juros <br>✔ 10x de R$ 8,99 sem juros <br>✔ Até 18x no cartão <br>✔ Frete grátis para todo Brasil",
+        descricao: "Mousepad Gamer Speed Extra Grande 120x60 Ninja Purple",
+        specs: [
+            ["Desenho Impresso", "Ninja Purple"],
+            ["Cor", "Preto"],
+            ["Tamanho do Mousepad", "Grande"],
+            ["Dimensões", "120x60"],
+            ["Espessura", "3mm"]
+        ],
+        imagens: [
+            "https://http2.mlstatic.com/D_NQ_NP_2X_807931-MLB76300626898_052024-F.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_2X_915850-MLB76300626900_052024-F.webp"
+        ]
+    }
+};
+
+// ===== VARIÁVEL DE IMAGEM ATUAL =====
+let imagemAtual = 0;
+let imagensAtivas = [];
+
+// ===== FUNÇÕES DE GALERIA (mantidas idênticas aos originais) =====
+function atualizarImagem() {
+    document.getElementById("imagemPrincipal").src = imagensAtivas[imagemAtual];
+}
+
+function proximaImagem() {
+    imagemAtual++;
+    if (imagemAtual >= imagensAtivas.length) imagemAtual = 0;
+    atualizarImagem();
+}
+
+function imagemAnterior() {
+    imagemAtual--;
+    if (imagemAtual < 0) imagemAtual = imagensAtivas.length - 1;
+    atualizarImagem();
+}
+
+function selecionarImagem(index) {
+    imagemAtual = index;
+    atualizarImagem();
+}
+
+// ===== ABRIR PRODUTO =====
+function abrirProduto(id) {
+    const p = produtos[id];
+    imagensAtivas = p.imagens;
+    imagemAtual = 0;
+
+    // preenche dados
+    document.getElementById("prodTitulo").textContent = p.titulo;
+    document.getElementById("prodAvaliacao").textContent = p.avaliacao;
+    document.getElementById("prodPrecoAntigo").textContent = p.precoAntigo;
+    document.getElementById("prodPreco").textContent = p.preco;
+    document.getElementById("prodParcelamento").innerHTML = p.parcelamento;
+    document.getElementById("prodDescricao").textContent = p.descricao;
+
+    // imagem principal
+    document.getElementById("imagemPrincipal").src = p.imagens[0];
+
+    // miniaturas
+    const mini = document.getElementById("miniaturas");
+    mini.innerHTML = "";
+    p.imagens.forEach((src, i) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.onclick = () => selecionarImagem(i);
+        mini.appendChild(img);
+    });
+
+    // especificações
+    const specs = document.getElementById("prodEspecificacoes");
+    specs.innerHTML = "";
+    p.specs.forEach(([nome, valor]) => {
+        specs.innerHTML += `
+            <div class="item-spec">
+                <span class="nome-spec">${nome}</span>
+                <span class="valor-spec">${valor}</span>
+            </div>`;
+    });
+
+    // troca de página
+    document.getElementById("pagina-ofertas").style.display = "none";
+    document.getElementById("pagina-produto").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ===== VOLTAR OFERTAS =====
+function voltarOfertas() {
+    document.getElementById("pagina-produto").style.display = "none";
+    document.getElementById("pagina-ofertas").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ===== MODAL LOGIN =====
+function abrirLogin() {
+    document.getElementById("modalLogin").style.display = "block";
+}
+function fecharLogin() {
+    document.getElementById("modalLogin").style.display = "none";
+}
+window.onclick = function(e) {
+    if (e.target === document.getElementById("modalLogin")) fecharLogin();
+};
+
+// ===== CARRINHO =====
+function abrirCarrinho() {
+    document.getElementById("meuCarrinho").style.width = "300px";
+}
+function fecharCarrinho() {
+    document.getElementById("meuCarrinho").style.width = "0";
+}
+
+// ===== ANIMAÇÃO SCROLL DO HEADER =====
+window.addEventListener('scroll', () => {
+    document.querySelector('.header').classList.toggle('scroll', window.scrollY > 100);
+});
+
+</script>
+
+</body>
+</html>
